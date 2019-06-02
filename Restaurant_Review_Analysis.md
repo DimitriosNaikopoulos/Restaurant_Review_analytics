@@ -1,9 +1,7 @@
-Text Mining: R Markdown report for TripAdvisor restaurant reviews
+TripAdvisor restaurant reviews
 ================
-Dimitrios Naikopoulos, Andrei-Sebastian Costin, Gergely Daniel Nemeth, Ioannis Savvidis, Konstantinos Alvertis
-25 March 2019
 
-1. Data Cleaning
+## 1. Data Cleaning
 ----------------
 
 In this section, the dataset with the reviews was imported and all the punctuation that the reviews had has been removed. Furthermore, the reviews section contained a date field which has been moved to a new column with the name "Date". For the separation of the "Review" and the "Date" fields in the new dataframe, the library "tidyverse" was used. The data cleaning was performed in a "for" iteration which deletes all the punctuations from the reviews.
@@ -36,7 +34,7 @@ clean_data <- useful_data[which(!useful_data$Review == "" & !useful_data$Cuisine
 write.csv(clean_data,'clean_data.csv')
 ```
 
-2. Question1: What is the opinion of people about restaurants?
+## 2. Question1: What is the opinion of people about restaurants?
 --------------------------------------------------------------
 
 To answer this question we performed a sentiment analysis on the clean data from the previous step. Also, a lexicon containing the weighted average of words was created for the sentiment analysis. The formulas and the calculations that have been done to create the lexicon are provided in the report paper. The idea behind this implementation was to create a lexicon that will not weigh all the words in the same way. In that way, the results will be more accurate as some words have more weight than others.
@@ -119,7 +117,7 @@ ggplot(scores_reviews, aes(x=Sentiment, fill=Sentiment))+ geom_bar(aes(y = (..co
 
 ![](Restaurant_Review_Analysis_files/figure-markdown_github/unnamed-chunk-2-1.png)
 
-3. Question2: What is the best type of food based on the polarity of the reviews?
+## 3. Question2: What is the best type of food based on the polarity of the reviews?
 ---------------------------------------------------------------------------------
 
 In this section, the information from the sentiment analysis was used, along with the cuisine types of the restaurants in the reviews, in order to learn which is the best type of restaurant according to our data. To extract this information, we used the reviews' scores from the sentiment analysis. The cuisine types were extracted from the appropriate column that each restaurant had in TripAdvisor.
@@ -177,7 +175,7 @@ p + labs(subtitle = NULL) + labs(x = "Cuisine Style") + labs(y = "Cuisine Score"
 
 ![](Restaurant_Review_Analysis_files/figure-markdown_github/unnamed-chunk-3-1.png)
 
-4. Question3: What do people talk about most in their comments?
+## 4. Question3: What do people talk about most in their comments?
 ---------------------------------------------------------------
 
 To understand the connection between the words in the reviews and to find what people talk about most in each topic, a Latent Dirichlet Allocation (LDA) model was used. To train the model, we used words from the customers' reviews. In order to have better results and reduce the amount of "noise" that can be caused by stop words, uncommon, misspelled words and words that exist on a large scale, three filters were applied.

@@ -1,7 +1,5 @@
 TripAdvisor restaurant reviews
 ================
-Dimitrios Naikopoulos, Andrei-Sebastian Costin, Gergely Daniel Nemeth, Ioannis Savvidis, Konstantinos Alvertis
-25 March 2019
 
 ## 1. Data Cleaning
 ----------------
